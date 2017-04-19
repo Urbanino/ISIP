@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="ISIP.Auth.RegisterControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ISIP.Auth"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Image x:Key="ArrowLeftIcon" Source="/Resources/Images/arrow-left.png" RenderOptions.BitmapScalingMode="HighQuality" Margin="40"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="1*"/>
+
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2.5*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2.5*"/>
+        </Grid.RowDefinitions>
+        <Viewbox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" >
+            <Label Content="Электронная почта"/>
+        </Viewbox>
+        <Viewbox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Stretch="Fill">
+            <TextBox Name="Email" Width="144" Template="{StaticResource DefaultTextBox}" />
+        </Viewbox>
+        <Viewbox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" >
+            <Label Content="Пароль"/>
+        </Viewbox>
+        <Viewbox Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="3" Stretch="Fill">
+            <PasswordBox Name="Pass" Width="144" MaxLength="16" Template="{StaticResource DefaultPasswordBox}"/>
+        </Viewbox>
+        <Viewbox Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="3" >
+            <Label Content="Подтверждение"/>
+        </Viewbox>
+        <Viewbox Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="3" Stretch="Fill">
+            <PasswordBox Name="PassCheck" Width="144" MaxLength="16" Template="{StaticResource DefaultPasswordBox}"/>
+        </Viewbox>
+        <Viewbox Grid.Column="1" Grid.Row="10"  Stretch="Fill">
+            <Button Name="BackButton" Content="{StaticResource ArrowLeftIcon}" Padding="20,0" Style="{StaticResource DefaultButton}" Click="BackButton_Click"/>
+        </Viewbox>
+        <Viewbox Grid.Column="3" Grid.Row="10"  Stretch="Fill">
+            <Button Name="RegisterButton" Content="Регистрация" Padding="20,0" Style="{StaticResource DefaultButton}" Click="RegisterButton_Click"/>
+        </Viewbox>
+    </Grid>
+</UserControl>

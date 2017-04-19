@@ -1,0 +1,434 @@
+﻿<Window x:Class="ISIP.Program.Collections.ClientRecordsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ISIP.Program.Collections"
+        mc:Ignorable="d"
+        Title="Справочник - Учет клиентов" Height="600" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem x:Name="ClientRecords">
+                <TabItem.Header>
+                    <Label Content="Клиент"/>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.05*"/>
+                            <RowDefinition />
+                            <RowDefinition Height="0.1*"/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.2*"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Stretch="Fill">
+                                <ComboBox Name="ClientFind" SelectedIndex="1">
+                                    <ComboBoxItem Content="ID"/>
+                                    <ComboBoxItem Content="Фамилия"/>
+                                    <ComboBoxItem Content="Имя"/>
+                                    <ComboBoxItem Content="Отчество"/>
+                                    <ComboBoxItem Content="Дата рождения"/>
+                                    <ComboBoxItem Content="Email"/>
+                                </ComboBox>
+                            </Viewbox>
+                            <Viewbox Grid.Column="1" Stretch="Fill">
+                                <TextBox Width="144"/>
+                            </Viewbox>
+                        </Grid>
+                        <DataGrid Name="ClientList" Grid.Row="1" IsReadOnly="True"  SelectionMode="Single" SelectionChanged="ClientList_SelectionChanged"/>
+                        <StackPanel Grid.Column="1" Grid.RowSpan="2" Margin="10" Grid.Row="1">
+                            <Label Content="Фамилия"/>
+                            <TextBox Name="Last_Name"/>
+                            <Label Content="Имя"/>
+                            <TextBox Name="First_Name"/>
+                            <Label Content="Очество"/>
+                            <TextBox Name="Middle_Name"/>
+                            <Label Content="Дата рождения"/>
+                            <TextBox Name="Birth_Date"/>
+                            <Label Content="Email"/>
+                            <TextBox Name="Email"/>
+                        </StackPanel>
+                        <Grid Grid.Row="2" Grid.ColumnSpan="1" Margin="5" Name="ClientControls">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Grid.Column="0" HorizontalAlignment="Center" Stretch="Fill" Margin="5,0">
+                                <Button Name="InsertClientButton" Content="Добавить" Style="{StaticResource DefaultButton}" Padding="5" Click="InsertClientButton_Click"/>
+                            </Viewbox>
+                            <Viewbox Grid.Column="1" HorizontalAlignment="Center" Stretch="Fill" Margin="5,0">
+                                <Button Name="UdpateClientButton" Content="Изменить" Style="{StaticResource DefaultButton}" Padding="5"/>
+                            </Viewbox>
+                            <Viewbox Grid.Column="3" HorizontalAlignment="Center" Stretch="Fill" Margin="5,0">
+                                <Button Name="DeleteClientButton" Content="Удалить" Style="{StaticResource DefaultButton}" Padding="5"/>
+                            </Viewbox>
+                        </Grid>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem x:Name="PassportRecords">
+                <TabItem.Header>
+                    <Label Content="Паспорт"/>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.05*"/>
+                            <RowDefinition />
+                            <RowDefinition Height="0.1*"/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.2*"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Stretch="Fill">
+                                <ComboBox Name="PassportFind" SelectedIndex="2">
+                                    <ComboBoxItem Content="ID"/>
+                                    <ComboBoxItem Content="Серия"/>
+                                    <ComboBoxItem Content="Номер"/>
+                                    <ComboBoxItem Content="Дата выдачи"/>
+                                    <ComboBoxItem Content="Место выдачи"/>
+                                </ComboBox>
+                            </Viewbox>
+                            <Viewbox Grid.Column="1" Stretch="Fill">
+                                <TextBox Width="144"/>
+                            </Viewbox>
+                        </Grid>
+                        <DataGrid Name="PassportList" Grid.Row="1" IsReadOnly="True"  SelectionMode="Single" SelectionChanged="PassportList_SelectionChanged"/>
+                        <StackPanel Grid.Column="1" Grid.RowSpan="2" Margin="10" Grid.Row="1">
+                            <Label Content="Серия паспорта"/>
+                            <TextBox Name="Pass_Series"/>
+                            <Label Content="Номер паспорта"/>
+                            <TextBox Name="Pass_Num"/>
+                            <Label Content="Дата выдачи"/>
+                            <TextBox Name="Issue_Date"/>
+                            <Label Content="Место выдачи"/>
+                            <TextBox Name="Issue_Place"/>
+                        </StackPanel>
+                        <Grid Name="PassportControls" Grid.Row="2" Grid.ColumnSpan="1" Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Grid.Column="0" HorizontalAlignment="Center" Stretch="Fill" Margin="5,0">
+                                <Button Content="Добавить" Style="{StaticResource DefaultButton}" Padding="5"/>
+                            </Viewbox>
+                            <Viewbox Grid.Column="1" HorizontalAlignment="Center" Stretch="Fill" Margin="5,0">
+                                <Button Content="Изменить" Style="{StaticResource DefaultButton}" Padding="5"/>
+                            </Viewbox>
+                            <Viewbox Grid.Column="3" HorizontalAlignment="Center" Stretch="Fill" Margin="5,0">
+                                <Button Content="Удалить" Style="{StaticResource DefaultButton}" Padding="5"/>
+                            </Viewbox>
+                        </Grid>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem x:Name="HouseRecords">
+                <TabItem.Header>
+                    <Label Content="Дом"/>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.05*" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Viewbox Stretch="Fill">
+                                <TextBox Width="144"/>
+                            </Viewbox>
+                            <DataGrid Name="CityList" SelectionChanged="CityList_SelectionChanged" IsReadOnly="True" Grid.Row="1" SelectionMode="Single"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.05*" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Viewbox Stretch="Fill">
+                                <TextBox Width="144"/>
+                            </Viewbox>
+                            <DataGrid Name="StreetList" IsReadOnly="True" Grid.Row="1" SelectionMode="Single" SelectionChanged="StreetList_SelectionChanged"/>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.05*" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Viewbox Stretch="Fill">
+                                <TextBox Width="144"/>
+                            </Viewbox>
+                            <DataGrid Name="HouseList" Grid.Row="1" SelectionChanged="HouseList_SelectionChanged" IsReadOnly="True"  SelectionMode="Single"/>
+                        </Grid>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem x:Name="LocationRecords">
+                <TabItem.Header>
+                    <Label Content="Адрес"/>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.05*"/>
+                            <RowDefinition />
+                            <RowDefinition Height="0.1*"/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.2*"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Stretch="Fill">
+                                <ComboBox Name="LocationFind" SelectedIndex="3">
+                                    <ComboBoxItem Content="ID"/>
+                                    <ComboBoxItem Content="Подъезд"/>
+                                    <ComboBoxItem Content="Этаж"/>
+                                    <ComboBoxItem Content="Квартира"/>
+                                </ComboBox>
+                            </Viewbox>
+                            <Viewbox Grid.Column="1" Stretch="Fill">
+                                <TextBox Width="144"/>
+                            </Viewbox>
+                        </Grid>
+                        <DataGrid Name="LocationList" Grid.Row="1" IsReadOnly="True"  SelectionMode="Single" SelectionChanged="LocationList_SelectionChanged"/>
+                        <StackPanel Grid.Column="1" Grid.RowSpan="2" Margin="10" Grid.Row="1">
+                            <Label Content="Подъезд"/>
+                            <TextBox Name="Front_Num"/>
+                            <Label Content="Этаж"/>
+                            <TextBox Name="Floor_Num"/>
+                            <Label Content="Квартира"/>
+                            <TextBox Name="Flat_Num"/>
+                        </StackPanel>
+                        <Grid Grid.Row="2" Grid.ColumnSpan="1" Margin="5" Name="LocationControls">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Grid.Column="0" HorizontalAlignment="Center" Stretch="Fill" Margin="5,0">
+                                <Button Content="Добавить" Style="{StaticResource DefaultButton}" Padding="5"/>
+                            </Viewbox>
+                            <Viewbox Grid.Column="1" HorizontalAlignment="Center" Stretch="Fill" Margin="5,0">
+                                <Button Content="Изменить" Style="{StaticResource DefaultButton}" Padding="5"/>
+                            </Viewbox>
+                            <Viewbox Grid.Column="3" HorizontalAlignment="Center" Stretch="Fill" Margin="5,0">
+                                <Button Content="Удалить" Style="{StaticResource DefaultButton}" Padding="5"/>
+                            </Viewbox>
+                        </Grid>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem x:Name="ContractRecords">
+                <TabItem.Header>
+                    <Label Content="Договор"/>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.05*"/>
+                            <RowDefinition />
+                            <RowDefinition Height="0.1*"/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.2*"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Stretch="Fill">
+                                <ComboBox Name="ContractFind" SelectedIndex="1">
+                                    <ComboBoxItem Content="ID"/>
+                                    <ComboBoxItem Content="Номер"/>
+                                    <ComboBoxItem Content="Дата заключения"/>
+                                    <ComboBoxItem Content="Дата расторжения"/>
+                                </ComboBox>
+                            </Viewbox>
+                            <Viewbox Grid.Column="1" Stretch="Fill">
+                                <TextBox Width="144"/>
+                            </Viewbox>
+                        </Grid>
+                        <DataGrid Name="ContractList" Grid.Row="1" IsReadOnly="True"  SelectionMode="Single" SelectionChanged="ContractList_SelectionChanged"/>
+                        <StackPanel Grid.Column="1" Grid.RowSpan="2" Margin="10" Grid.Row="1">
+                            <Label Content="Номер"/>
+                            <TextBox Name="Contract_Num"/>
+                            <Label Content="Дата заключение"/>
+                            <TextBox Name="Create_Date"/>
+                            <Label Content="Дата расторжения"/>
+                            <TextBox Name="Close_Date"/>
+                        </StackPanel>
+                        <Grid Grid.Row="2" Grid.ColumnSpan="1" Margin="5" Name="ContractControls">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Grid.Column="0" HorizontalAlignment="Center" Stretch="Fill" Margin="5,0">
+                                <Button Content="Добавить" Style="{StaticResource DefaultButton}" Padding="5"/>
+                            </Viewbox>
+                            <Viewbox Grid.Column="1" HorizontalAlignment="Center" Stretch="Fill" Margin="5,0">
+                                <Button Content="Изменить" Style="{StaticResource DefaultButton}" Padding="5"/>
+                            </Viewbox>
+                            <Viewbox Grid.Column="3" HorizontalAlignment="Center" Stretch="Fill" Margin="5,0">
+                                <Button Content="Удалить" Style="{StaticResource DefaultButton}" Padding="5"/>
+                            </Viewbox>
+                        </Grid>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem x:Name="AccountRecords">
+                <TabItem.Header>
+                    <Label Content="Аккаунт"/>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.05*"/>
+                            <RowDefinition />
+                            <RowDefinition Height="0.1*"/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.2*"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Stretch="Fill">
+                                <ComboBox SelectedIndex="1">
+                                    <ComboBoxItem Content="ID"/>
+                                    <ComboBoxItem Content="Логин"/>
+                                </ComboBox>
+                            </Viewbox>
+                            <Viewbox Stretch="Fill" Grid.Column="1">
+                                <TextBox  Width="144"/>
+                            </Viewbox>
+                        </Grid>
+                        <DataGrid Name="AccountList" Grid.Row="1" IsReadOnly="True"  SelectionMode="Single" SelectionChanged="AccountList_SelectionChanged"/>
+                        <StackPanel Grid.Column="1" Grid.RowSpan="2" Margin="10" Grid.Row="1">
+                            <Label Content="Логин"/>
+                            <TextBox Name="Login"/>
+                            <Label Content="Пароль"/>
+                            <TextBox Name="Password"/>
+                            <Label Content="Баланс"/>
+                            <TextBox Name="Balance"/>
+                            <Label Content="Доступ"/>
+                            <TextBox Name="Access"/>
+                        </StackPanel>
+                        <Grid Grid.Row="2" Grid.ColumnSpan="1" Margin="5" Name="AccountControls">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Grid.Column="0" HorizontalAlignment="Center" Stretch="Fill" Margin="5,0">
+                                <Button Content="Добавить" Style="{StaticResource DefaultButton}" Padding="5"/>
+                            </Viewbox>
+                            <Viewbox Grid.Column="1" HorizontalAlignment="Center" Stretch="Fill" Margin="5,0">
+                                <Button Content="Изменить" Style="{StaticResource DefaultButton}" Padding="5"/>
+                            </Viewbox>
+                            <Viewbox Grid.Column="3" HorizontalAlignment="Center" Stretch="Fill" Margin="5,0">
+                                <Button Content="Удалить" Style="{StaticResource DefaultButton}" Padding="5"/>
+                            </Viewbox>
+                        </Grid>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem x:Name="TariffHistoryRecords">
+                <TabItem.Header>
+                    <Label Content="История тарифов"/>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.4*"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.05*"/>
+                            <RowDefinition />
+                            <RowDefinition Height="0.1*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Stretch="Fill">
+                                <ComboBox SelectedIndex="1">
+                                    <ComboBoxItem Content="ID"/>
+                                    <ComboBoxItem Content="Название тарифа"/>
+                                </ComboBox>
+                            </Viewbox>
+                            <Viewbox Stretch="Fill" Grid.Column="1">
+                                <TextBox  Width="144"/>
+                            </Viewbox>
+                        </Grid>
+                        <DataGrid Name="TariffList" IsReadOnly="True"  SelectionMode="Single" Grid.Row="1" />
+                        <DataGrid Name="TariffHistoryList" Grid.Row="1" Grid.Column="1" IsReadOnly="True"  SelectionMode="Single"/>
+                        <StackPanel Grid.Column="2" Grid.RowSpan="2" Margin="10" Grid.Row="1">
+                            <Label Content="Дата подключения"/>
+                            <TextBox />
+                            <Label Content="Дата отключения"/>
+                            <TextBox />
+                            <Label Content="Баланс"/>
+                            <TextBox />
+                            <Label Content="Акция"/>
+                            <ComboBox Name="TariffDiscountList" DropDownOpened="TariffDiscountList_DropDownOpened"/>
+                        </StackPanel>
+                        <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" Margin="5" Name="TariffHistoryControls">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Grid.Column="0" HorizontalAlignment="Center" Stretch="Fill" Margin="5,0">
+                                <Button Content="Добавить" Style="{StaticResource DefaultButton}" Padding="5"/>
+                            </Viewbox>
+                            <Viewbox Grid.Column="1" HorizontalAlignment="Center" Stretch="Fill" Margin="5,0">
+                                <Button Content="Изменить" Style="{StaticResource DefaultButton}" Padding="5"/>
+                            </Viewbox>
+                            <Viewbox Grid.Column="3" HorizontalAlignment="Center" Stretch="Fill" Margin="5,0">
+                                <Button Content="Удалить" Style="{StaticResource DefaultButton}" Padding="5"/>
+                            </Viewbox>
+                        </Grid>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

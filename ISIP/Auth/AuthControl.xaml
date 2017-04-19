@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="ISIP.Auth.AuthControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ISIP.Auth"
+             mc:Ignorable="d" 
+             d:DesignHeight="330" d:DesignWidth="400" MinHeight="330" MinWidth="400" Loaded="UserControl_Loaded" >
+    <UserControl.Resources>
+        <Image x:Key="GearIcon" Source="/Resources/Images/gear.png" RenderOptions.BitmapScalingMode="HighQuality" Margin="40"/>
+        <Image x:Key="SignInIcon" Source="/Resources/Images/sign-in.png" RenderOptions.BitmapScalingMode="HighQuality" Margin="40"/>
+        <Image x:Key="UserPlusIcon" Source="/Resources/Images/user-plus.png" RenderOptions.BitmapScalingMode="HighQuality" Margin="40"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1.75*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Row="0" Grid.Column="1" Source="/Resources/Images/logo.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox  Grid.Row="0" Grid.ColumnSpan="3" Stretch="Fill" Margin="5">
+                <TextBox Name="Login" Width="100" MaxLength="80" Template="{StaticResource DefaultTextBox}"  />
+            </Viewbox>
+            <Viewbox Grid.Row="1" Grid.ColumnSpan="3" Stretch="Fill" Margin="5">
+                <PasswordBox Name="Pass" Width="100" MaxLength="20"  Template="{StaticResource DefaultPasswordBox}" />
+            </Viewbox>
+            <Viewbox Margin="5" Grid.Row="2" Grid.Column="0" Stretch="Fill" >
+                <Button Name="SettingsButton" Content="{StaticResource GearIcon}" Style="{StaticResource DefaultButton}" Click="SettingsButton_Click" />
+            </Viewbox>
+            <Viewbox Margin="5" Grid.Row="2" Grid.Column="1" Stretch="Fill" >
+                <Button Name="RegisterButton" Content="{StaticResource UserPlusIcon}" Style="{StaticResource DefaultButton}" Click="RegisterButton_Click"/>
+            </Viewbox>
+            <Viewbox Margin="5" Grid.Row="2" Grid.Column="2" Stretch="Fill" >
+                <Button Name="LoginButton" Content="{StaticResource SignInIcon}" Style="{StaticResource DefaultButton}" Click="LoginButton_Click" IsDefault="True"/>
+            </Viewbox>
+        </Grid>
+        <Viewbox Grid.Row="3" Grid.Column="1" >
+            <Label Name="StatusLabel" Content="Подключено" Foreground="Green"/>
+        </Viewbox>
+    </Grid>
+</UserControl>

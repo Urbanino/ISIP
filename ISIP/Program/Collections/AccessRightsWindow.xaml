@@ -1,0 +1,97 @@
+﻿<Window x:Class="ISIP.Program.Collections.AccessRightsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ISIP.Program.Collections"
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="Справочник - Права доступа" Height="600" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <ListView Name="PostList" SelectionChanged="PostList_SelectionChanged">
+                      <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}"></GridViewColumn>
+                            <GridViewColumn Header="Должность" DisplayMemberBinding="{Binding Path=Post_Name}"></GridViewColumn>
+                        </GridView.Columns>
+                    </GridView>
+          </ListView.View>
+        </ListView>
+        <TabControl Grid.Column="1">
+            <TabItem x:Name="CollectionAccess">
+                <TabItem.Header>
+                    <Label Content="Доступ к справочникам"/>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.1*"/>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Доступные справочники"/>
+                        <DataGrid  Name="EnabledCollections" ItemsSource="{Binding}" IsReadOnly="True" Grid.Row="1" SelectionMode="Single" MouseDoubleClick="EnabledCollections_MouseDoubleClick" SelectionChanged="EnabledCollections_SelectionChanged"/>
+                        <Label Content="Недоступные справочники" Grid.Column="1"/>
+                        <DataGrid  Name="DisabledCollections" ItemsSource="{Binding}" IsReadOnly="True" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" SelectionMode="Single" MouseDoubleClick="DisabledCollections_MouseDoubleClick" />
+                        <StackPanel Grid.Row="2">
+                            <Label Content="Редактирование"/>
+                            <RadioButton Name="ModifiedYes" GroupName="Modified" Content="Да" Checked="RadioButton_Checked"/>
+                            <RadioButton Name="ModifiedNo" GroupName="Modified" Content="Нет" Checked="RadioButton_Checked" />
+                        </StackPanel>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem x:Name="FunctionAccess">
+                <TabItem.Header>
+                    <Label Content="Доступ к функциям"/>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.1*"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Доступные функции"/>
+                        <DataGrid Name="EnabledFunctions" Grid.Row="1"  ItemsSource="{Binding}" IsReadOnly="True" SelectionMode="Single" MouseDoubleClick="EnabledFunctions_MouseDoubleClick"/>
+                        <Label Content="Недоступные функции" Grid.Column="1"/>
+                        <DataGrid Name="DisabledFunctions"  Grid.Column="1" Grid.Row="1"  ItemsSource="{Binding}" IsReadOnly="True" SelectionMode="Single" MouseDoubleClick="DisabledFunctions_MouseDoubleClick"/>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem x:Name="ReportAccess">
+                <TabItem.Header>
+                    <Label Content="Доступ к отчетам"/>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.1*"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Доступные отчеты"/>
+                        <DataGrid Name="EnabledReports" Grid.Row="1"  ItemsSource="{Binding}" IsReadOnly="True" SelectionMode="Single" MouseDoubleClick="EnabledReports_MouseDoubleClick"/>
+                        <Label Content="Недоступные отчеты" Grid.Column="1"/>
+                        <DataGrid Name="DisabledReports"  Grid.Column="1" Grid.Row="1"  ItemsSource="{Binding}" IsReadOnly="True" SelectionMode="Single" MouseDoubleClick="DisabledReports_MouseDoubleClick"/>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
